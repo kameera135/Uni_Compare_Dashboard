@@ -1,0 +1,20 @@
+# Environment files - never commit these
+.env
+.env.local
+.env.development
+.env.production
+
+# Python
+etl/venv/
+etl/__pycache__/
+etl/scrapers/__pycache__/
+*.pyc
+
+# Node
+backend/node_modules/
+frontend/node_modules/
+frontend/.next/
+
+# OS files
+.DS_Store
+Thumbs.db
