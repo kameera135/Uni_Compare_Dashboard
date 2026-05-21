@@ -29,7 +29,7 @@ export default function ProgramCard({ program, onAddToCompare, compareList }) {
         )}
       </div>
 
-      {/* Stats row */}
+      {/* Stats grid */}
       <div className="grid grid-cols-2 gap-3 mb-4">
         <div>
           <p className="text-xs text-gray-400">Annual Fee</p>
@@ -52,12 +52,49 @@ export default function ProgramCard({ program, onAddToCompare, compareList }) {
           </p>
         </div>
         <div>
-          <p className="text-xs text-gray-400">Location</p>
+          <p className="text-xs text-gray-400">IELTS Required</p>
           <p className="text-sm font-medium text-gray-700">
-            {program.location || 'Australia'}
+            {program.ielts_score ? program.ielts_score : 'N/A'}
           </p>
         </div>
       </div>
+
+      {/* Career outcomes section */}
+      {(program.avg_salary_aud || program.avg_employment_pct) && (
+        <div className="bg-gray-50 rounded-lg p-3 mb-4">
+          <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">
+            Career Outcomes
+          </p>
+          <div className="grid grid-cols-2 gap-2">
+            {program.avg_salary_aud && (
+              <div>
+                <p className="text-xs text-gray-400">Avg Salary</p>
+                <p className="text-sm font-bold text-green-600">
+                  A${Number(program.avg_salary_aud).toLocaleString()}
+                </p>
+              </div>
+            )}
+            {program.avg_employment_pct && (
+              <div>
+                <p className="text-xs text-gray-400">Employment Rate</p>
+                <p className="text-sm font-bold text-green-600">
+                  {program.avg_employment_pct}%
+                </p>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* Visa pathway */}
+      {program.visa_type && (
+        <div className="mb-4">
+          <p className="text-xs text-gray-400">Visa Pathway</p>
+          <p className="text-xs font-medium text-blue-600">
+            {program.visa_type}
+          </p>
+        </div>
+      )}
 
       {/* Compare button */}
       <button
