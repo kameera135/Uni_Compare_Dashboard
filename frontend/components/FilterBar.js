@@ -1,18 +1,19 @@
 export default function FilterBar({ filters, setFilters, fields }) {
   const levels    = ['Bachelor', 'Masters', 'Doctoral', 'Diploma', 'Graduate Certificate', 'Graduate Diploma'];
   const modes     = ['on-campus', 'online', 'blended'];
+  const ieltsOpts = ['5.0', '5.5', '6.0', '6.5', '7.0', '7.5'];
   const sortOpts  = [
-    { value: 'tuition_fee',     label: 'Fee: Low to High' },
-    { value: 'tuition_fee_desc',label: 'Fee: High to Low' },
-    { value: 'best_rank',       label: 'Best Rank' },
-    { value: 'program_name',    label: 'Name A–Z' },
+    { value: 'tuition_fee',      label: 'Fee: Low to High' },
+    { value: 'tuition_fee_desc', label: 'Fee: High to Low' },
+    { value: 'best_rank',        label: 'Best Rank' },
+    { value: 'program_name',     label: 'Name A–Z' },
   ];
 
   const handle = (key, value) => setFilters(prev => ({ ...prev, [key]: value }));
 
   const reset = () => setFilters({
     field: '', level: '', delivery: '',
-    minFee: '', maxFee: '', sort: 'tuition_fee'
+    minFee: '', maxFee: '', ielts: '', sort: 'tuition_fee'
   });
 
   return (
@@ -24,7 +25,7 @@ export default function FilterBar({ filters, setFilters, fields }) {
         </button>
       </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-7 gap-3">
 
         {/* Field of study */}
         <select
@@ -54,6 +55,16 @@ export default function FilterBar({ filters, setFilters, fields }) {
         >
           <option value="">All Modes</option>
           {modes.map(m => <option key={m} value={m}>{m}</option>)}
+        </select>
+
+        {/* IELTS score */}
+        <select
+          value={filters.ielts}
+          onChange={e => handle('ielts', e.target.value)}
+          className="border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-orange-300"
+        >
+          <option value="">My IELTS Score</option>
+          {ieltsOpts.map(s => <option key={s} value={s}>IELTS {s} or below</option>)}
         </select>
 
         {/* Min fee */}

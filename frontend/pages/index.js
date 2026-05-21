@@ -16,7 +16,7 @@ export default function Home() {
   const [search,      setSearch]      = useState('');
   const [filters, setFilters] = useState({
     field: '', level: '', delivery: '',
-    minFee: '', maxFee: '', sort: 'tuition_fee'
+    minFee: '', maxFee: '', ielts: '', sort: 'tuition_fee'
   });
 
   // Load fields for dropdown
@@ -36,6 +36,7 @@ export default function Home() {
       if (filters.delivery) params.delivery = filters.delivery;
       if (filters.minFee)   params.minFee   = filters.minFee;
       if (filters.maxFee)   params.maxFee   = filters.maxFee;
+      if (filters.ielts)    params.ielts = filters.ielts;
       if (search)           params.university = search;
 
       if (filters.sort === 'tuition_fee_desc') {
