@@ -111,7 +111,7 @@ export default function Home() {
               placeholder="Search by university name..."
               value={search}
               onChange={e => setSearch(e.target.value)}
-              className="w-full border border-gray-200 rounded-xl px-5 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-orange-300 shadow-sm"
+              className="w-full border-2 border-orange-300 rounded-xl px-5 py-3 text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-200 shadow-md bg-white"
             />
           </div>
 
